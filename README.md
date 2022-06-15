@@ -1,5 +1,6 @@
-# gitnewurlfinder
-System to find a small (potentially nice) new url for github profile.
+# Nice Github Urls
+
+Script to find a small (potentially nice) free urls for github profiles.
 
 Free URLs found:
 * ldp
