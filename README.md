@@ -1,6 +1,6 @@
 # Nice Github Urls
 
-Script to find a small (potentially nice) free urls for github profiles.
+Script to find small (potentially nice) free urls for github profiles.
 
 Free URLs found:
 * ldp
