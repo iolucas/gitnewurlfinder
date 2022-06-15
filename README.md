@@ -19,3 +19,8 @@ Free URLs found:
 * vubu
 * rohu
 * tohi
+
+* nazi
+* meqe
+* qohu
+* sosa
