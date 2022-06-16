@@ -28,10 +28,6 @@ def check_git_url_free(url, wait_time=5):
     else:
         print("Erro:", url, req_status_code)
 
-url_styles = [
-
-]
-
 if __name__ == '__main__':
 
     limit = 10000

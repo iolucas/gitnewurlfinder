@@ -24,3 +24,14 @@ Free URLs found:
 * meqe
 * qohu
 * sosa
+* hivu
+* qede
+* qifo
+* pedo
+* huna
+* zafo
+* xequ
+* zuje
+* qosu
+* kuqa
+* vetu
