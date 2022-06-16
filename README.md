@@ -2,7 +2,7 @@
 
 Script to find small (potentially nice) free usernames for github profiles.
 
-Free URLs found:
+[Available usernames found](available_users.txt)
 * ldp
 * lpo
 * lab
