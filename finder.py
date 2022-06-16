@@ -8,8 +8,22 @@ import random
 
 import time
 
+available_urls_f = open("available_users.txt", "a")
+not_available_urls_f = open("not_available_users.txt", "a")
+
 def write_found_url(url):
     open("README.md", "a").write("\n* " + url)
+
+
+def flush_files():
+    global available_urls_f
+    global not_available_urls_f
+
+    available_urls_f.close()
+    available_urls_f = open("available_users.txt", "a")
+    not_available_urls_f.close()
+    not_available_urls_f = open("not_available_users.txt", "a")
+
 
 
 def check_git_url_free(url, wait_time=5):
@@ -17,10 +31,9 @@ def check_git_url_free(url, wait_time=5):
     req_status_code = requests.get(f"https://github.com/{url}").status_code
 
     if req_status_code == 404:
-        print(url)
-        return True
+        available_urls_f.write("\n" + url)
     elif req_status_code == 200:
-        pass
+        not_available_urls_f.write("\n" + url)
     elif req_status_code == 429:
         print(url, f"Too many requests error. Awaiting {wait_time} seconds...")
         time.sleep(wait_time)
@@ -37,6 +50,13 @@ if __name__ == '__main__':
     numbers = "0123456789"
     hyphen = "-"
 
+    available_urls = [l[:-1] if l[-1] == "\n" else l for l in open("available_users.txt", "r").readlines()]
+    not_available_urls = [l[:-1] if l[-1] == "\n" else l for l in open("not_available_users.txt", "r").readlines()]
+    
+    already_check_urls = set(available_urls + not_available_urls)
+
+    print("Amount of already checked users: ", len(already_check_urls))
+
     #characters = "l"
     #characters1 = "abcdefghijklmnopqrstuvwxyz0123456789-"
     #characters2 = "abcdefghijklmnopqrstuvwxyz0123456789"
@@ -47,12 +67,24 @@ if __name__ == '__main__':
 
     char_groups = [consonants] + [vowels] + [consonants] + [vowels]
 
-    candidates = list(set(list(map("".join, itertools.product(*char_groups)))))
+    candidates = set(list(map("".join, itertools.product(*char_groups))))
+
+    print("Total combinatoric users: ", len(candidates))
+
+    candidates = list(candidates - already_check_urls)
+
+    print("Amount of users to be checked: ", len(candidates))
 
     random.shuffle(candidates)
 
+    candidates = candidates[:limit]
+
     print("Number of candidates:", len(candidates))
 
-    for candidate in tqdm.tqdm(candidates[:limit]):
-        if check_git_url_free(candidate):
-            write_found_url(candidate)
+    done_files = 0
+    for candidate in tqdm.tqdm(candidates[:limit], unit="user"):
+        check_git_url_free(candidate)
+        done_files += 1
+
+        if done_files % 100 == 0:
+            flush_files()
