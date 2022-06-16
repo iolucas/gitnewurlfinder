@@ -43,8 +43,6 @@ def check_git_url_free(url, wait_time=5):
 
 if __name__ == '__main__':
 
-    limit = 10000
-
     consonants = "bcdfghjklmnpqrstvwxyz"
     vowels = "aeiou"
     numbers = "0123456789"
@@ -65,7 +63,16 @@ if __name__ == '__main__':
     #n_characters = 2
     #char_groups = [characters] + [characters3] * n_characters
 
-    char_groups = [consonants] + [vowels] + [consonants] + [vowels]
+    #char_groups = [consonants] + [vowels] + [consonants] + [vowels]
+    #char_groups = [consonants] + [vowels] + [vowels] + [consonants]
+    #char_groups = ["l"] + [vowels] + [vowels+consonants] + [vowels+consonants]
+    #char_groups = [vowels+consonants+numbers] + [vowels+consonants+numbers] + [vowels+consonants+numbers]
+    #char_groups = [vowels+consonants] + [vowels+consonants+numbers] + [vowels+consonants+numbers]
+    #char_groups = ["l"] + ["u"] + ["c"] + [vowels+consonants+numbers] + [vowels+consonants+numbers]
+    char_groups = ["l"] + ["u"] + ["c"] + [vowels+consonants+numbers]# + [vowels+consonants+numbers]
+    char_groups = ["l"] + ["u"] + ["c"] + [vowels+consonants+numbers] + [vowels+consonants]
+
+    print(char_groups)
 
     candidates = set(list(map("".join, itertools.product(*char_groups))))
 
@@ -77,12 +84,10 @@ if __name__ == '__main__':
 
     random.shuffle(candidates)
 
-    candidates = candidates[:limit]
-
-    print("Number of candidates:", len(candidates))
+    print("Sample: ", candidates[:10])
 
     done_files = 0
-    for candidate in tqdm.tqdm(candidates[:limit], unit="user"):
+    for candidate in tqdm.tqdm(candidates, unit="user"):
         check_git_url_free(candidate)
         done_files += 1
 
