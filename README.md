@@ -1,6 +1,6 @@
-# Nice Github Urls
+# Nice Github Users
 
-Script to find small (potentially nice) free urls for github profiles.
+Script to find small (potentially nice) free usernames for github profiles.
 
 Free URLs found:
 * ldp
@@ -19,7 +19,6 @@ Free URLs found:
 * vubu
 * rohu
 * tohi
-
 * nazi
 * meqe
 * qohu
@@ -35,3 +34,4 @@ Free URLs found:
 * qosu
 * kuqa
 * vetu
+
